@@ -11,7 +11,7 @@ from blog.models import Post
 
 
 @csrf_exempt
-def post_list(request):
+def post_list(request, format=None):
     if request.method == "GET":
         posts = Post.objects.all()
         return JsonResponse({"data": PostSerializer(posts, many=True).data})
@@ -27,7 +27,7 @@ def post_list(request):
 
 
 @csrf_exempt
-def post_detail(request, pk):
+def post_detail(request, pk, format=None):
     post = get_object_or_404(Post, pk=pk)
 
     if request.method == "GET":   
